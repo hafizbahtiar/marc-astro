@@ -1,0 +1,90 @@
+---
+import Layout from "./Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+interface Props {
+	title: string;
+	updated: string;
+}
+
+const { title, updated } = Astro.props;
+---
+
+<Layout
+	title={`${title} — MARC`}
+	description={`${title} untuk aplikasi MARC (Kelab Sukan dan Rekreasi MAIWP).`}
+>
+	<Header />
+	<main class="legal">
+		<div class="legal__inner">
+			<h1>{title}</h1>
+			<p class="legal__updated">Dikemas kini: {updated}</p>
+			<div class="legal__content">
+				<slot />
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<style>
+	.legal {
+		padding: 56px 24px 80px;
+	}
+
+	.legal__inner {
+		max-width: 720px;
+		margin: 0 auto;
+	}
+
+	h1 {
+		font-size: clamp(1.8rem, 3.4vw, 2.4rem);
+	}
+
+	.legal__updated {
+		margin-top: 10px;
+		font-size: 0.88rem;
+		color: var(--color-muted);
+	}
+
+	.legal__content {
+		margin-top: 36px;
+	}
+
+	.legal__content :global(h2) {
+		font-size: 1.3rem;
+		margin-top: 40px;
+		margin-bottom: 14px;
+	}
+
+	.legal__content :global(h2:first-child) {
+		margin-top: 0;
+	}
+
+	.legal__content :global(p) {
+		font-size: 0.98rem;
+		line-height: 1.75;
+		color: var(--color-ink);
+		margin-bottom: 14px;
+	}
+
+	.legal__content :global(ul) {
+		margin: 0 0 14px;
+		padding-left: 22px;
+	}
+
+	.legal__content :global(li) {
+		font-size: 0.98rem;
+		line-height: 1.75;
+		margin-bottom: 6px;
+	}
+
+	.legal__content :global(a) {
+		color: var(--color-primary);
+	}
+
+	.legal__content :global(strong) {
+		font-weight: 600;
+	}
+</style>

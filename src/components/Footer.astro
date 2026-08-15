@@ -1,0 +1,69 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="footer">
+	<div class="footer__inner">
+		<p>&copy; {year} Hafiz Bahtiar</p>
+		<nav class="footer__links" aria-label="Pautan legal">
+			<a href="/terma-dan-syarat">Terma dan Syarat</a>
+			<span class="footer__links-sep" aria-hidden="true">&middot;</span>
+			<a href="/dasar-privasi">Dasar Privasi</a>
+		</nav>
+		<p>
+			Dibangunkan oleh <a
+				href="https://hafizbahtiar.com"
+				target="_blank"
+				rel="noopener noreferrer">hafizbahtiar.com</a
+			>
+		</p>
+	</div>
+</footer>
+
+<style>
+	.footer {
+		padding: 32px 24px 40px;
+		border-top: 1px solid var(--color-outline);
+	}
+
+	.footer__inner {
+		max-width: 1080px;
+		margin: 0 auto;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		flex-wrap: wrap;
+		gap: 12px;
+	}
+
+	.footer__inner p {
+		font-size: 0.85rem;
+		color: var(--color-muted);
+	}
+
+	.footer__inner a {
+		color: var(--color-primary);
+		text-decoration: underline;
+	}
+
+	.footer__links {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+	}
+
+	.footer__links-sep {
+		color: var(--color-outline);
+	}
+
+	.footer__links a {
+		font-size: 0.85rem;
+		color: var(--color-muted);
+		text-decoration: none;
+	}
+
+	.footer__links a:hover {
+		color: var(--color-primary);
+		text-decoration: underline;
+	}
+</style>

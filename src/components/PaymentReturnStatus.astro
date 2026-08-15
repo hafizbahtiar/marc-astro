@@ -1,0 +1,119 @@
+---
+interface Props {
+	feeLabel: string;
+}
+
+const { feeLabel } = Astro.props;
+---
+
+<main class="status">
+	<div class="status__card">
+		<div id="state-1" class="status__state" hidden>
+			<div class="status__icon status__icon--ok" aria-hidden="true">
+				&check;
+			</div>
+			<h1>Pembayaran berjaya</h1>
+			<p>
+				{feeLabel} anda telah diterima. Kembali ke aplikasi MARC untuk lihat
+				status terkini.
+			</p>
+		</div>
+		<div id="state-2" class="status__state" hidden>
+			<div class="status__icon status__icon--pending" aria-hidden="true">
+				&hellip;
+			</div>
+			<h1>Pembayaran sedang diproses</h1>
+			<p>
+				Terima kasih. {feeLabel} anda sedang disahkan - boleh kembali ke aplikasi
+				MARC, status akan dikemas kini automatik.
+			</p>
+		</div>
+		<div id="state-3" class="status__state" hidden>
+			<div class="status__icon status__icon--err" aria-hidden="true">
+				!
+			</div>
+			<h1>Pembayaran tidak berjaya</h1>
+			<p>
+				{feeLabel} tidak dapat diproses atau dibatalkan. Kembali ke aplikasi
+				MARC untuk cuba lagi.
+			</p>
+		</div>
+		<div id="state-default" class="status__state">
+			<div class="status__icon status__icon--pending" aria-hidden="true">
+				&hellip;
+			</div>
+			<h1>Terima kasih</h1>
+			<p>
+				{feeLabel} anda sedang diproses. Boleh kembali ke aplikasi MARC -
+				status akan dikemas kini automatik sebaik pembayaran disahkan.
+			</p>
+		</div>
+	</div>
+</main>
+
+<script>
+	const states = document.querySelectorAll<HTMLElement>(".status__state");
+	const statusId = new URLSearchParams(window.location.search).get(
+		"status_id",
+	);
+	const target =
+		document.getElementById(`state-${statusId}`) ||
+		document.getElementById("state-default");
+
+	for (const node of states) {
+		node.hidden = node !== target;
+	}
+</script>
+
+<style>
+	.status {
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 64px 24px;
+	}
+
+	.status__card {
+		max-width: 440px;
+		width: 100%;
+		text-align: center;
+	}
+
+	.status__state h1 {
+		font-size: 1.5rem;
+		margin-bottom: 10px;
+	}
+
+	.status__state p {
+		color: var(--color-muted);
+		line-height: 1.6;
+	}
+
+	.status__icon {
+		width: 48px;
+		height: 48px;
+		margin: 0 auto 18px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+
+	.status__icon--ok {
+		background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+		color: var(--color-primary);
+	}
+
+	.status__icon--pending {
+		background: var(--color-surface);
+		color: var(--color-muted);
+	}
+
+	.status__icon--err {
+		background: var(--color-warning-bg);
+		color: var(--color-warning);
+	}
+</style>

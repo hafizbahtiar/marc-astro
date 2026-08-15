@@ -1,0 +1,151 @@
+---
+import LegalLayout from "../layouts/LegalLayout.astro";
+---
+
+<LegalLayout title="Dasar Privasi" updated="16 Ogos 2026">
+	<h2>1. Pengenalan</h2>
+	<p>
+		Dasar Privasi ini menerangkan bagaimana aplikasi MARC ("kami", "aplikasi
+		ini") mengumpul, menggunakan dan melindungi maklumat ahli Kelab Sukan
+		dan Rekreasi MAIWP ("MARC"/"kelab") yang menggunakan aplikasi ini. <strong
+			>Aplikasi ini dibangunkan secara sukarela sebagai projek peribadi
+			oleh pembangun (Hafiz Bahtiar), dan bukan aplikasi rasmi, tidak
+			diurus, ditaja atau disahkan oleh MAIWP.</strong
+		> Dengan menggunakan aplikasi ini, anda bersetuju dengan amalan yang diterangkan
+		di sini.
+	</p>
+
+	<h2>2. Maklumat yang Dikumpul</h2>
+	<p>Kami mengumpul maklumat berikut semasa anda menggunakan aplikasi:</p>
+	<ul>
+		<li>
+			<strong>Maklumat akaun</strong> - alamat emel, nombor telefon, dan kata
+			laluan (disimpan dalam bentuk hash, bukan teks biasa).
+		</li>
+		<li>
+			<strong>Maklumat profil</strong> - nama paparan, nombor ahli, gambar profil
+			(jika dimuat naik), dan peranan/status keahlian.
+		</li>
+		<li>
+			<strong>Kandungan yang anda cipta</strong> - post, komen, dan gambar yang
+			anda kongsi dalam aplikasi.
+		</li>
+		<li>
+			<strong>Maklumat aktiviti</strong> - pendaftaran aktiviti kelab, rekod
+			kehadiran, dan sijil penyertaan yang dijana.
+		</li>
+		<li>
+			<strong>Maklumat bayaran</strong> - rekod transaksi (jumlah, mata wang,
+			status, rujukan gateway) bagi yuran pendaftaran, yuran aktiviti dan derma.
+			<strong
+				>Kami TIDAK menyimpan nombor kad kredit/debit atau butiran
+				perbankan anda</strong
+			> - bayaran diproses terus oleh penyedia gateway pembayaran (ToyyibPay
+			dan Stripe).
+		</li>
+		<li>
+			<strong>Token notifikasi peranti</strong> - untuk menghantar push notification
+			melalui OneSignal.
+		</li>
+		<li>
+			<strong>Jejak audit</strong> - rekod tindakan pentadbiran (cth kelulusan
+			ahli, perubahan peranan) untuk tujuan akauntabiliti dan keselamatan.
+		</li>
+	</ul>
+
+	<h2>3. Bagaimana Maklumat Digunakan</h2>
+	<p>Maklumat yang dikumpul digunakan semata-mata untuk:</p>
+	<ul>
+		<li>Mengesahkan identiti dan menguruskan akaun ahli.</li>
+		<li>
+			Memproses kelulusan keahlian, pendaftaran aktiviti dan penerbitan
+			sijil.
+		</li>
+		<li>Memproses bayaran yuran dan derma yang anda buat sendiri.</li>
+		<li>
+			Menghantar notifikasi berkaitan aktiviti kelab dan status akaun
+			anda.
+		</li>
+		<li>
+			Mengekalkan keselamatan aplikasi dan menyiasat sebarang
+			penyalahgunaan.
+		</li>
+	</ul>
+	<p>
+		Kami tidak menjual atau menyewakan maklumat peribadi anda kepada pihak
+		ketiga untuk tujuan pengiklanan.
+	</p>
+
+	<h2>4. Perkongsian dengan Pihak Ketiga</h2>
+	<p>
+		Sebahagian fungsi aplikasi bergantung kepada penyedia perkhidmatan pihak
+		ketiga berikut, yang menerima maklumat terhad mengikut keperluan fungsi
+		masing-masing:
+	</p>
+	<ul>
+		<li>
+			<strong>ToyyibPay</strong> dan <strong>Stripe</strong> - pemprosesan bayaran.
+		</li>
+		<li><strong>OneSignal</strong> - penghantaran push notification.</li>
+		<li>
+			<strong>Cloudflare R2</strong> - storan gambar (profil, post, sijil).
+		</li>
+		<li>
+			<strong>Resend</strong> - penghantaran emel (pengesahan akaun, resit).
+		</li>
+	</ul>
+	<p>
+		Setiap penyedia ini mempunyai dasar privasi mereka sendiri dan hanya
+		menerima maklumat yang perlu untuk fungsi yang berkaitan.
+	</p>
+
+	<h2>5. Keselamatan Data</h2>
+	<p>
+		Kata laluan disimpan dalam bentuk hash (bukan teks biasa), akses kepada
+		data ahli dihadkan mengikut peranan (ahli biasa vs pihak pengurusan),
+		dan setiap tindakan pentadbiran berkaitan keahlian direkod dalam jejak
+		audit. Walaupun kami mengambil langkah munasabah untuk melindungi
+		maklumat anda, tiada sistem yang selamat sepenuhnya - kami tidak boleh
+		menjamin keselamatan mutlak.
+	</p>
+
+	<h2>6. Tempoh Simpanan</h2>
+	<p>
+		Maklumat akaun dan keahlian disimpan selagi akaun anda aktif. Rekod
+		bayaran dan jejak audit disimpan untuk tempoh munasabah bagi tujuan
+		operasi, akauntabiliti dan keperluan rekod kewangan, selepas itu dipadam
+		atau disaring secara berkala.
+	</p>
+
+	<h2>7. Hak Anda</h2>
+	<p>
+		Anda boleh mengemas kini maklumat profil anda (nama, telefon, gambar)
+		bila-bila masa dalam aplikasi. Buat masa ini, permintaan untuk
+		mengakses, membetulkan atau memadam maklumat akaun anda perlu dibuat
+		secara terus kepada pihak pengurusan MARC atau pembangun aplikasi (lihat
+		bahagian Hubungi Kami) - ciri padam akaun sendiri di dalam aplikasi
+		belum tersedia.
+	</p>
+
+	<h2>8. Kanak-kanak</h2>
+	<p>
+		Aplikasi ini ditujukan untuk ahli kelab dewasa dan tidak dirancang
+		khusus untuk kanak-kanak bawah umur 13 tahun.
+	</p>
+
+	<h2>9. Perubahan kepada Dasar Ini</h2>
+	<p>
+		Dasar Privasi ini boleh dikemas kini dari semasa ke semasa. Sebarang
+		perubahan ketara akan dipaparkan dalam aplikasi atau di laman web ini.
+	</p>
+
+	<h2>10. Hubungi Kami</h2>
+	<p>
+		Untuk soalan berkaitan privasi atau permintaan berkaitan data anda,
+		hubungi pihak pengurusan MARC melalui aplikasi, atau pembangun melalui <a
+			href="https://hafizbahtiar.com"
+			target="_blank"
+			rel="noopener noreferrer">hafizbahtiar.com</a
+		>.
+	</p>
+</LegalLayout>

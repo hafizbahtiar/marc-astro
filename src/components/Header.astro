@@ -1,0 +1,98 @@
+---
+import logo from "../assets/brand/logo.png";
+import { Image } from "astro:assets";
+---
+
+<header class="header">
+	<div class="header__inner">
+		<a href="/" class="header__brand" aria-label="MARC">
+			<Image src={logo} alt="" height={32} loading="eager" />
+			<span>MARC</span>
+		</a>
+		<nav class="header__nav" aria-label="Navigasi utama">
+			<a href="/#tentang">Tentang</a>
+			<a href="/#ciri">Ciri-ciri</a>
+			<a href="/#muat-turun">Muat Turun</a>
+		</nav>
+	</div>
+</header>
+
+<style>
+	.header {
+		position: sticky;
+		top: 0;
+		z-index: 50;
+		background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+		backdrop-filter: blur(8px);
+		border-bottom: 1px solid var(--color-outline);
+	}
+
+	.header__inner {
+		max-width: 1080px;
+		margin: 0 auto;
+		padding: 14px 24px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.header__brand {
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		text-decoration: none;
+	}
+
+	.header__brand span {
+		font-family: var(--font-display);
+		font-weight: 600;
+		font-size: 1.2rem;
+		color: var(--color-ink);
+	}
+
+	.header__nav {
+		display: flex;
+		gap: 28px;
+	}
+
+	.header__nav a {
+		font-size: 0.95rem;
+		font-weight: 500;
+		text-decoration: none;
+		color: var(--color-ink);
+		opacity: 0.8;
+		transition: opacity 0.15s ease;
+	}
+
+	.header__nav a:hover {
+		opacity: 1;
+		color: var(--color-primary);
+	}
+
+	@media (max-width: 560px) {
+		.header__nav {
+			gap: 16px;
+		}
+		.header__nav a {
+			font-size: 0.85rem;
+		}
+	}
+
+	/* Logo + jenama + 3 pautan nav melebihi lebar skrin telefon kecil
+	   (cth iPhone SE, 320px) dalam satu baris - tindih dua baris,
+	   nav dipusatkan, supaya tiada overflow horizontal. */
+	@media (max-width: 400px) {
+		.header__inner {
+			flex-wrap: wrap;
+			justify-content: center;
+			row-gap: 10px;
+			padding: 12px 16px;
+		}
+		.header__nav {
+			width: 100%;
+			justify-content: center;
+			gap: 14px;
+		}
+	}
+</style>

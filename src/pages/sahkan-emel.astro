@@ -1,0 +1,160 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout
+	title="Sahkan Emel — MARC"
+	description="Pengesahan alamat emel akaun MARC anda."
+>
+	<Header />
+	<main class="status">
+		<div class="status__card">
+			<div id="state-loading" class="status__state">
+				<div class="status__spinner" aria-hidden="true"></div>
+				<h1>Mengesahkan emel anda&hellip;</h1>
+				<p>Sila tunggu sebentar.</p>
+			</div>
+			<div id="state-success" class="status__state" hidden>
+				<div class="status__icon status__icon--ok" aria-hidden="true">
+					&check;
+				</div>
+				<h1>Emel disahkan!</h1>
+				<p>
+					Akaun MARC anda telah disahkan. Kembali ke aplikasi untuk
+					teruskan.
+				</p>
+			</div>
+			<div id="state-error" class="status__state" hidden>
+				<div class="status__icon status__icon--err" aria-hidden="true">
+					!
+				</div>
+				<h1>Pengesahan gagal</h1>
+				<p id="error-message">Pautan tidak sah atau telah luput.</p>
+				<p class="status__hint">
+					Kembali ke aplikasi MARC dan minta pautan pengesahan baharu.
+				</p>
+			</div>
+		</div>
+	</main>
+	<Footer />
+</Layout>
+
+<script define:vars={{ apiBaseUrl: import.meta.env.PUBLIC_API_BASE_URL ?? "" }}>
+	const loading = document.getElementById("state-loading");
+	const success = document.getElementById("state-success");
+	const error = document.getElementById("state-error");
+	const errorMessage = document.getElementById("error-message");
+
+	function show(target) {
+		for (const node of [loading, success, error]) {
+			node.hidden = node !== target;
+		}
+	}
+
+	const token = new URLSearchParams(window.location.search).get("token");
+
+	if (!token) {
+		errorMessage.textContent = "Pautan tidak sah — token tiada.";
+		show(error);
+	} else if (!apiBaseUrl) {
+		errorMessage.textContent =
+			"Ralat konfigurasi laman web. Sila cuba lagi kemudian.";
+		show(error);
+	} else {
+		fetch(`${apiBaseUrl}/auth/verify-email/confirm`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify({ token }),
+		})
+			.then((res) => {
+				if (res.status === 204) {
+					show(success);
+					return;
+				}
+				return res
+					.json()
+					.catch(() => ({}))
+					.then((body) => {
+						errorMessage.textContent =
+							body?.error || "Pautan tidak sah atau telah luput.";
+						show(error);
+					});
+			})
+			.catch(() => {
+				errorMessage.textContent =
+					"Tidak dapat menghubungi pelayan. Semak sambungan internet anda.";
+				show(error);
+			});
+	}
+</script>
+
+<style>
+	.status {
+		min-height: 60vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 64px 24px;
+	}
+
+	.status__card {
+		max-width: 440px;
+		width: 100%;
+		text-align: center;
+	}
+
+	.status__state h1 {
+		font-size: 1.5rem;
+		margin-bottom: 10px;
+	}
+
+	.status__state p {
+		color: var(--color-muted);
+		line-height: 1.6;
+	}
+
+	.status__hint {
+		margin-top: 8px;
+		font-size: 0.9rem;
+	}
+
+	.status__spinner {
+		width: 36px;
+		height: 36px;
+		margin: 0 auto 20px;
+		border-radius: 50%;
+		border: 3px solid var(--color-outline);
+		border-top-color: var(--color-primary);
+		animation: spin 0.8s linear infinite;
+	}
+
+	.status__icon {
+		width: 48px;
+		height: 48px;
+		margin: 0 auto 18px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 1.4rem;
+		font-weight: 700;
+	}
+
+	.status__icon--ok {
+		background: color-mix(in srgb, var(--color-primary) 16%, transparent);
+		color: var(--color-primary);
+	}
+
+	.status__icon--err {
+		background: var(--color-warning-bg);
+		color: var(--color-warning);
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
+		}
+	}
+</style>

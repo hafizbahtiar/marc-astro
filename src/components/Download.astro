@@ -1,0 +1,87 @@
+<section class="download" id="muat-turun">
+	<div class="download__inner">
+		<h2>Muat Turun App</h2>
+		<p>
+			MARC sedang dalam proses semakan App Store dan Google Play. Pautan
+			muat turun akan dikemas kini di sini sebaik sahaja tersedia.
+		</p>
+		<div class="download__badges">
+			<span class="badge">
+				<span class="badge__label">Akan Datang di</span>
+				<span class="badge__store">App Store</span>
+			</span>
+			<span class="badge">
+				<span class="badge__label">Akan Datang di</span>
+				<span class="badge__store">Google Play</span>
+			</span>
+		</div>
+		<p class="download__note">
+			Sudah ahli kelab? Hubungi pihak pengurusan MARC untuk maklumat
+			akses.
+		</p>
+	</div>
+</section>
+
+<style>
+	.download {
+		padding: 72px 24px;
+		background: var(--color-primary);
+		color: white;
+		text-align: center;
+	}
+
+	.download__inner {
+		max-width: 640px;
+		margin: 0 auto;
+	}
+
+	h2 {
+		font-size: clamp(1.6rem, 3vw, 2.2rem);
+		color: white;
+		margin-bottom: 16px;
+	}
+
+	.download__inner > p {
+		font-size: 1.02rem;
+		line-height: 1.6;
+		color: color-mix(in srgb, white 88%, transparent);
+	}
+
+	.download__badges {
+		margin-top: 32px;
+		display: flex;
+		justify-content: center;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.badge {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 2px;
+		padding: 10px 20px;
+		border-radius: 12px;
+		border: 1.5px solid color-mix(in srgb, white 35%, transparent);
+		min-width: 168px;
+		opacity: 0.85;
+	}
+
+	.badge__label {
+		font-size: 0.7rem;
+		letter-spacing: 0.04em;
+		text-transform: uppercase;
+		opacity: 0.8;
+	}
+
+	.badge__store {
+		font-size: 1.05rem;
+		font-weight: 600;
+	}
+
+	.download__note {
+		margin-top: 28px;
+		font-size: 0.92rem;
+		opacity: 0.85;
+	}
+</style>
