@@ -22,6 +22,17 @@ browsers into.
       `GET {PUBLIC_API_BASE_URL}/verify/certificates/:token`.
 - [x] Navbar fixed to work from any page (`/#anchor`, not bare `#anchor`).
 - [x] Mobile header wrap fix for narrow phones (<400px).
+- [x] `public/.well-known/assetlinks.json` (2026-08-16) — Digital Asset
+      Links for `com.hafizbahtiar.marc`, one `sha256_cert_fingerprints`
+      entry (supplied by owner, not independently verified against Play
+      Console — confirm it's the **App Signing** cert, not just a local
+      upload/debug key, before relying on it). File only, **no**
+      `autoVerify` intent-filter added in `marc_flutter`'s
+      `AndroidManifest.xml` yet — deliberate: `/sahkan-emel` and
+      `/sahkan-sijil` still deep-link nowhere in the Flutter app (no
+      matching routes), so App Links would currently claim the domain
+      without anywhere for it to send the user. Revisit together if/when
+      in-app confirm screens for those two flows get built.
 
 ### Backend wiring required for each page above (marc_go, Railway env vars)
 
