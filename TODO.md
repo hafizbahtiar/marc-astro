@@ -20,6 +20,10 @@ browsers into.
 - [x] `/sahkan-sijil` — certificate verification page (scanned via QR on
       printed certificates). Reads `?token=`, calls
       `GET {PUBLIC_API_BASE_URL}/verify/certificates/:token`.
+- [x] `/reset-kata-laluan` — password reset page (2026-08-22). Reads
+      `?token=`, shows a password form, calls
+      `POST {PUBLIC_API_BASE_URL}/auth/password-reset/confirm`. Unlike
+      `/sahkan-emel` this does **not** auto-submit — it needs user input.
 - [x] Navbar fixed to work from any page (`/#anchor`, not bare `#anchor`).
 - [x] Mobile header wrap fix for narrow phones (<400px).
 - [x] `public/.well-known/assetlinks.json` (2026-08-16) — Digital Asset
@@ -45,6 +49,15 @@ behaviour, unchanged:
 | `/pembayaran/pendaftaran` | `REGISTRATION_PAYMENT_RETURN_URL=https://marc.hafizbahtiar.com/pembayaran/pendaftaran` | none (passive redirect) |
 | `/pembayaran/aktiviti` | `ACTIVITY_PAYMENT_RETURN_URL=https://marc.hafizbahtiar.com/pembayaran/aktiviti` | none (passive redirect) |
 | `/sahkan-sijil` | `CERTIFICATE_VERIFY_URL=https://marc.hafizbahtiar.com/sahkan-sijil` | `CORS_ALLOWED_ORIGINS` already covers it (same var, list of origins) |
+| `/reset-kata-laluan` | `PASSWORD_RESET_URL=https://marc.hafizbahtiar.com/reset-kata-laluan` | `CORS_ALLOWED_ORIGINS` must include the site origin (POST fetch) |
+
+**`/reset-kata-laluan` does NOT follow the optional pattern above.** The
+other four degrade to a Go-hosted fallback page when their env var is
+empty; this one does not, deliberately — a password form is not something
+that should appear from a fallback page nobody designed. Leave
+`PASSWORD_RESET_URL` unset and `POST /auth/password-reset/request` returns
+**503** to every member who taps "Lupa kata laluan?" in the app. There is
+no degraded mode: the feature is either wired or off.
 
 **Note on `/sahkan-sijil` and `CERTIFICATE_VERIFY_URL`:** this only affects
 certificates *generated after* the env var is set — the QR code is baked
@@ -54,14 +67,25 @@ already printed keep pointing at the old Go-hosted JSON URL forever; that
 route (`GET /verify/certificates/:token`) must stay working indefinitely,
 it can never be removed.
 
-None of these Railway env vars are set yet as of 2026-08-16 — until they
-are, all four flows still work, just via the Go backend's own plain
-HTML/JSON fallback pages instead of these branded ones.
+None of these Railway env vars are set yet as of 2026-08-22. For the
+**first four** flows that's cosmetic — they still work, just via the Go
+backend's own plain HTML/JSON fallback pages instead of these branded
+ones. For `/reset-kata-laluan` it is not: there is no fallback, so
+password reset is **off** until `PASSWORD_RESET_URL` is set.
 
 `PUBLIC_API_BASE_URL` (marc_astro's own env var, `.env`) currently points
 at the **staging** API (`https://marc-go-staging.up.railway.app`) —
 production Railway isn't deployed yet. Update this + redeploy Astro when
 production exists.
+
+This is a build-time inline, not a runtime read (static build, no adapter),
+so a stale value ships baked into the HTML. It matters most for
+`/reset-kata-laluan`: a production member's reset token exists only in the
+production DB, so a page pointing at staging answers a perfectly valid
+ten-second-old link with *"Pautan tidak sah atau telah luput"* — and the
+request never reaches production, so nothing in its logs shows it happened.
+For `/sahkan-emel` the same mistake is a retryable no-op; here it's a dead
+end with actively misleading copy.
 
 ## Backlog / considered, not building
 
@@ -76,15 +100,29 @@ Everything else checked out as either already covered above or not a fit:
   client-side via the Stripe mobile SDK, not a redirect. Nothing to attach
   an Astro page to unless/until Stripe Checkout Sessions get added
   server-side.
-- **Password reset / magic link / invite link** — doesn't exist in the
-  product at all (grepped for `ResetPassword`, `forgot`, `magic.link`,
-  `invite` — no matches). Not a gap, just absent.
+- **Magic link / invite link** — don't exist in the product (grepped for
+  `magic.link`, `invite` — no matches). Not a gap, just absent.
+  (**Password reset** was in this list until 2026-08-22 — it's now built,
+  see `/reset-kata-laluan` under Done.)
 - **Certificate download** (`GET /me/certificates/:id/file`) — Bearer-token
   gated, returns a signed R2 URL for the *logged-in* member's own
   certificate. Needs an active mobile session; doesn't make sense as a
   public web page.
 - **Approval/rejection and donation-receipt emails** — plain informational
   HTML, no clickable link embedded, nothing for a landing page to do.
+
+## Known polish (not blocking)
+
+- [ ] `/reset-kata-laluan` is a one-shot form: `show(error)` hides the form
+      permanently, and the fixed hint says *"Kembali ke app MARC dan minta
+      pautan reset yang baharu."* That advice is wrong for the two most
+      likely failures. A member on shared NAT who requested a few times
+      (rate-limit bucket is per-IP, burst 5, shared between `/request` and
+      `/confirm`) gets a **429** on submit — and a plain network blip hits
+      the same dead end. In both cases the token is still perfectly valid;
+      nothing was consumed. Fix: on non-400 branches, return to `show(form)`
+      with an inline error instead of the terminal error state.
+      (Final L32 review, 2026-08-22.)
 
 ## Design backlog (from earlier feedback, not started)
 
