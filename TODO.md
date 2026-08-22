@@ -67,16 +67,33 @@ already printed keep pointing at the old Go-hosted JSON URL forever; that
 route (`GET /verify/certificates/:token`) must stay working indefinitely,
 it can never be removed.
 
-None of these Railway env vars are set yet as of 2026-08-22. For the
-**first four** flows that's cosmetic — they still work, just via the Go
-backend's own plain HTML/JSON fallback pages instead of these branded
-ones. For `/reset-kata-laluan` it is not: there is no fallback, so
-password reset is **off** until `PASSWORD_RESET_URL` is set.
+Status as of 2026-08-22, read from Railway (`railway variables`) rather
+than assumed — an earlier version of this note claimed none were set,
+which had been wrong for some time:
 
-`PUBLIC_API_BASE_URL` (marc_astro's own env var, `.env`) currently points
-at the **staging** API (`https://marc-go-staging.up.railway.app`) —
-production Railway isn't deployed yet. Update this + redeploy Astro when
-production exists.
+| Env var | staging | production |
+|---|---|---|
+| `EMAIL_VERIFY_URL` | set | set |
+| `CERTIFICATE_VERIFY_URL` | set | set |
+| `REGISTRATION_PAYMENT_RETURN_URL` | set ⚠️ | set |
+| `ACTIVITY_PAYMENT_RETURN_URL` | set | set |
+| `PASSWORD_RESET_URL` | **empty — reset is OFF** | set |
+
+⚠️ staging's `REGISTRATION_PAYMENT_RETURN_URL` is
+`marc-astro-staging.up.railway.app/pembayaran/pendaftaran` — **no
+`https://` scheme**, unlike the four vars around it. Production is
+correct. Likely breaks the ToyyibPay return redirect on staging. Found
+2026-08-22, not investigated.
+
+Production serves `https://marc.hafizbahtiar.com` with the API at
+`https://api.marc.hafizbahtiar.com`; staging pairs
+`marc-astro-staging` with `marc-go-staging`.
+
+`PUBLIC_API_BASE_URL` (marc_astro's own env var) points at the **staging**
+API (`https://marc-go-staging.up.railway.app`) in the local `.env`.
+Production **is** deployed (`https://api.marc.hafizbahtiar.com`), so the
+production Astro build must be given the production value — check the
+`marc-astro` service's own Railway variables, not this file.
 
 This is a build-time inline, not a runtime read (static build, no adapter),
 so a stale value ships baked into the HTML. It matters most for
