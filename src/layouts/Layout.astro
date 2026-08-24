@@ -5,7 +5,7 @@ interface Props {
 }
 
 const {
-	title = "MARC — Aplikasi Komuniti Kelab",
+	title = "MARC - Aplikasi Komuniti Kelab",
 	description = "MARC ialah aplikasi komuniti untuk berkongsi maklumat, pengumuman, aktiviti dan berhubung sesama ahli kelab.",
 } = Astro.props;
 
@@ -59,7 +59,7 @@ const ogImage = new URL(
 
 <style is:global>
 	:root {
-		/* Padanan warna jenama app Flutter (lib/app/theme.dart) — kekal
+		/* Padanan warna jenama app Flutter (lib/app/theme.dart) - kekal
 		   SAMA di sini supaya laman web ni terasa macam lanjutan app,
 		   bukan produk berasingan. */
 		--color-primary: #2f6b4f;
@@ -87,6 +87,10 @@ const ogImage = new URL(
 		padding: 0;
 		width: 100%;
 		scroll-behavior: smooth;
+		/* Jaring keselamatan mobile - satu elemen terlebar sedikit drpd
+		   viewport (cth teks panjang tanpa ruang, no. siri sijil) sepatutnya
+		   dibalut, bukan cipta scroll mendatar keseluruhan halaman. */
+		overflow-x: hidden;
 	}
 
 	body {
@@ -105,7 +109,7 @@ const ogImage = new URL(
 		margin: 0;
 	}
 
-	/* Padanan tinggi header lekit — tanpa ni, tajuk seksyen tersorok
+	/* Padanan tinggi header lekit - tanpa ni, tajuk seksyen tersorok
 	   separuh di bawah header bila ditatal terus via pautan #anchor. */
 	section[id] {
 		scroll-margin-top: 72px;

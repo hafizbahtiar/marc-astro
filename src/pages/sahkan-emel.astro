@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout
-	title="Sahkan Emel — MARC"
+	title="Sahkan Emel - MARC"
 	description="Pengesahan alamat emel akaun MARC anda."
 >
 	<Header />
@@ -56,7 +56,7 @@ import Footer from "../components/Footer.astro";
 	const token = new URLSearchParams(window.location.search).get("token");
 
 	if (!token) {
-		errorMessage.textContent = "Pautan tidak sah — token tiada.";
+		errorMessage.textContent = "Pautan tidak sah - token tiada.";
 		show(error);
 	} else if (!apiBaseUrl) {
 		errorMessage.textContent =
