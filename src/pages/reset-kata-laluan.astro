@@ -5,7 +5,7 @@ import Footer from "../components/Footer.astro";
 ---
 
 <Layout
-	title="Reset Kata Laluan — MARC"
+	title="Reset Kata Laluan - MARC"
 	description="Tetapkan kata laluan baharu untuk akaun MARC anda."
 >
 	<Header />
@@ -64,7 +64,7 @@ import Footer from "../components/Footer.astro";
 	const token = new URLSearchParams(window.location.search).get("token");
 
 	if (!token) {
-		errorMessage.textContent = "Pautan tidak sah — token tiada.";
+		errorMessage.textContent = "Pautan tidak sah - token tiada.";
 		show(error);
 	} else if (!apiBaseUrl) {
 		errorMessage.textContent =
@@ -77,7 +77,7 @@ import Footer from "../components/Footer.astro";
 			const password = document.getElementById("password").value;
 			const confirm = document.getElementById("confirm").value;
 
-			// Semakan sisi klien untuk maklum balas serta-merta SAHAJA —
+			// Semakan sisi klien untuk maklum balas serta-merta SAHAJA -
 			// server tetap menguatkuasakan peraturan yang sama.
 			if (password.length < 6) {
 				formError.textContent = "Kata laluan mesti sekurang-kurangnya 6 aksara.";
