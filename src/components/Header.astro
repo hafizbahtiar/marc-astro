@@ -14,6 +14,10 @@ import { Image } from "astro:assets";
 			<a href="/#ciri">Ciri-ciri</a>
 			<a href="/#muat-turun">Muat Turun</a>
 		</nav>
+		<div class="header__actions">
+			<a href="/login" class="header__login">Log masuk</a>
+			<a href="/register" class="header__register">Daftar</a>
+		</div>
 	</div>
 </header>
 
@@ -56,6 +60,38 @@ import { Image } from "astro:assets";
 		gap: 12px;
 	}
 
+	.header__actions {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+	}
+
+	.header__login,
+	.header__register {
+		padding: 10px 14px;
+		border-radius: 9px;
+		font-size: 0.88rem;
+		font-weight: 600;
+		text-decoration: none;
+	}
+
+	.header__login {
+		color: var(--color-primary);
+	}
+
+	.header__login:hover {
+		background: color-mix(in srgb, var(--color-primary) 9%, transparent);
+	}
+
+	.header__register {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	.header__register:hover {
+		background: var(--color-primary-dark);
+	}
+
 	/* Padding (bukan cuma gap) - tapping area sepatutnya sekurang-kurangnya
 	   ~44px tinggi (garis panduan Apple/Material). Teks bulat tanpa padding
 	   cuma bagi ~19px, terlalu kecil utk jari kat skrin sentuh. */
@@ -89,6 +125,14 @@ import { Image } from "astro:assets";
 		.header__nav a {
 			font-size: 0.85rem;
 		}
+
+		.header__login {
+			display: none;
+		}
+
+		.header__register {
+			padding: 9px 11px;
+		}
 	}
 
 	/* Logo + jenama + 3 pautan nav melebihi lebar skrin telefon kecil
@@ -105,6 +149,12 @@ import { Image } from "astro:assets";
 			width: 100%;
 			justify-content: center;
 			gap: 4px;
+		}
+
+		.header__actions {
+			position: absolute;
+			top: 12px;
+			right: 16px;
 		}
 	}
 </style>
