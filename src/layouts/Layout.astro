@@ -29,7 +29,7 @@ const ogImage = new URL(
 		<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 		<link rel="canonical" href={siteUrl} />
 		<meta name="generator" content={Astro.generator} />
-		<meta name="theme-color" content="#2F6B4F" />
+		<meta name="theme-color" content="#E21E28" />
 
 		<title>{title}</title>
 		<meta name="description" content={description} />
@@ -59,21 +59,26 @@ const ogImage = new URL(
 
 <style is:global>
 	:root {
-		/* Token visual MARC: hijau komuniti, emas pencapaian,
-		   dan navy untuk permukaan yang memerlukan kontras. */
-		--color-primary: #2f6b4f;
-		--color-primary-dark: #23523c;
-		--color-primary-light: #9fd3b4;
-		--color-secondary: #d6a84f;
-		--color-secondary-dark: #a77d28;
-		--color-third: #223145;
-		--color-bg: #f7f8f5;
+		/* Selaraskan dengan AppTheme dalam marc_flutter:
+		   merah primary, navy secondary dan biru royal tertiary. */
+		--color-primary: #e21e28;
+		--color-primary-dark: #5e0f12;
+		--color-primary-light: #ffdada;
+		--color-secondary: #223145;
+		--color-secondary-dark: #16202f;
+		--color-secondary-light: #d9e2f2;
+		--color-third: #2d3089;
+		--color-third-light: #e2e2ff;
+		--color-bg: #faf8f7;
 		--color-surface: #ffffff;
-		--color-ink: #17231d;
-		--color-muted: #637067;
-		--color-outline: #dfe7e1;
+		--color-ink: #1b1a1a;
+		--color-muted: #5f5a5a;
+		--color-outline: #c9c2c2;
+		--color-outline-soft: #e6dede;
 		--color-warning: #8a5a00;
 		--color-warning-bg: #fbefd3;
+		--color-success: #146b41;
+		--color-success-bg: #dbf1e4;
 
 		--font-display: "Fraunces", Georgia, serif;
 		--font-body: "Inter", system-ui, -apple-system, sans-serif;
