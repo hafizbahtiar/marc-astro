@@ -1,10 +1,12 @@
 <section class="download" id="muat-turun">
 	<div class="download__inner">
-		<h2>Muat Turun App</h2>
+		<h2>Mulakan dengan MARC</h2>
 		<p>
-			MARC sedang dalam proses semakan App Store dan Google Play. Pautan
-			muat turun akan dikemas kini di sini sebaik sahaja tersedia.
+			Portal web MARC sudah tersedia untuk pendaftaran, aktiviti, notifikasi
+			dan urusan keahlian. Aplikasi mudah alih akan menyusul selepas semakan
+			store selesai.
 		</p>
+		<a href="/login" class="download__button">Buka portal web</a>
 		<div class="download__badges">
 			<span class="badge">
 				<span class="badge__label">Akan Datang di</span>
@@ -53,6 +55,22 @@
 		justify-content: center;
 		gap: 16px;
 		flex-wrap: wrap;
+	}
+
+	.download__button {
+		display: inline-flex;
+		margin-top: 28px;
+		padding: 13px 22px;
+		border: 1px solid color-mix(in srgb, white 45%, transparent);
+		border-radius: 10px;
+		color: white;
+		font-weight: 600;
+		text-decoration: none;
+		transition: background 0.15s ease;
+	}
+
+	.download__button:hover {
+		background: color-mix(in srgb, white 12%, transparent);
 	}
 
 	.badge {

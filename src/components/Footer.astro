@@ -4,7 +4,10 @@ const year = new Date().getFullYear();
 
 <footer class="footer">
 	<div class="footer__inner">
-		<p>&copy; {year} Hafiz Bahtiar</p>
+		<div>
+			<p class="footer__brand">MARC</p>
+			<p>&copy; {year} Hafiz Bahtiar</p>
+		</div>
 		<nav class="footer__links" aria-label="Pautan legal">
 			<a href="/terma-dan-syarat">Terma dan Syarat</a>
 			<span class="footer__links-sep" aria-hidden="true">&middot;</span>
@@ -28,6 +31,7 @@ const year = new Date().getFullYear();
 	.footer {
 		padding: 32px 24px 40px;
 		border-top: 1px solid var(--color-outline);
+		background: var(--color-third);
 	}
 
 	.footer__inner {
@@ -42,11 +46,20 @@ const year = new Date().getFullYear();
 
 	.footer__inner p {
 		font-size: 0.85rem;
-		color: var(--color-muted);
+		color: color-mix(in srgb, white 68%, transparent);
+	}
+
+	.footer__brand {
+		margin-bottom: 5px;
+		color: white !important;
+		font-family: var(--font-display);
+		font-size: 1.15rem !important;
+		font-weight: 600;
+		letter-spacing: 0.12em;
 	}
 
 	.footer__inner a {
-		color: var(--color-primary);
+		color: var(--color-secondary);
 		text-decoration: underline;
 	}
 
@@ -65,7 +78,7 @@ const year = new Date().getFullYear();
 
 	.footer__links a {
 		font-size: 0.85rem;
-		color: var(--color-muted);
+		color: color-mix(in srgb, white 72%, transparent);
 		text-decoration: none;
 	}
 

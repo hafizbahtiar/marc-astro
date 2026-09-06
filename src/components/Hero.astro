@@ -14,13 +14,16 @@ import { Image } from "astro:assets";
 				ahli komuniti.
 			</p>
 			<div class="hero__cta">
-				<a href="#muat-turun" class="button button--primary"
-					>Muat Turun App</a
+				<a href="/login" class="button button--primary"
+					>Buka MARC</a
 				>
 				<a href="#tentang" class="button button--ghost"
 					>Ketahui Lebih Lanjut</a
 				>
 			</div>
+			<p class="hero__availability">
+				Portal web tersedia sekarang · Aplikasi mudah alih sedang disediakan
+			</p>
 		</div>
 		<div class="hero__art">
 			<Image
@@ -53,7 +56,6 @@ import { Image } from "astro:assets";
 		font-size: 0.8rem;
 		font-weight: 600;
 		letter-spacing: 0.08em;
-		text-transform: uppercase;
 		color: var(--color-primary);
 		background: color-mix(in srgb, var(--color-primary) 12%, transparent);
 		padding: 6px 12px;
@@ -80,6 +82,12 @@ import { Image } from "astro:assets";
 		display: flex;
 		gap: 14px;
 		flex-wrap: wrap;
+	}
+
+	.hero__availability {
+		margin-top: 14px;
+		font-size: 0.82rem;
+		color: var(--color-muted);
 	}
 
 	.hero__art {
