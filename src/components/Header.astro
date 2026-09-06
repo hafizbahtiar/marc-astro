@@ -12,8 +12,15 @@ import { Image } from "astro:assets";
 		<nav class="header__nav" aria-label="Navigasi utama">
 			<a href="/#tentang">Tentang</a>
 			<a href="/#ciri">Ciri-ciri</a>
-			<a href="/#muat-turun">Akses</a>
 		</nav>
+		<div class="header__actions">
+			<a class="header__login" href="https://app.marc.hafizbahtiar.com/login">
+				Log masuk
+			</a>
+			<a class="header__register" href="https://app.marc.hafizbahtiar.com/register">
+				Daftar
+			</a>
+		</div>
 	</div>
 </header>
 
@@ -56,6 +63,13 @@ import { Image } from "astro:assets";
 		gap: 12px;
 	}
 
+	.header__actions {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		margin-left: auto;
+	}
+
 	/* Padding (bukan cuma gap) - tapping area sepatutnya sekurang-kurangnya
 	   ~44px tinggi (garis panduan Apple/Material). Teks bulat tanpa padding
 	   cuma bagi ~19px, terlalu kecil utk jari kat skrin sentuh. */
@@ -82,6 +96,33 @@ import { Image } from "astro:assets";
 		color: var(--color-primary);
 	}
 
+	.header__login,
+	.header__register {
+		padding: 10px 14px;
+		border-radius: 8px;
+		font-size: 0.9rem;
+		font-weight: 600;
+		text-decoration: none;
+		white-space: nowrap;
+	}
+
+	.header__login {
+		color: var(--color-ink);
+	}
+
+	.header__login:hover {
+		color: var(--color-primary);
+	}
+
+	.header__register {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	.header__register:hover {
+		background: var(--color-primary-dark);
+	}
+
 	@media (max-width: 560px) {
 		.header__nav {
 			gap: 4px;
@@ -90,6 +131,15 @@ import { Image } from "astro:assets";
 			font-size: 0.85rem;
 		}
 
+		.header__actions {
+			gap: 2px;
+		}
+
+		.header__login,
+		.header__register {
+			padding: 9px 10px;
+			font-size: 0.82rem;
+		}
 	}
 
 	/* Logo + jenama + 3 pautan nav melebihi lebar skrin telefon kecil
@@ -106,6 +156,9 @@ import { Image } from "astro:assets";
 			width: 100%;
 			justify-content: center;
 			gap: 4px;
+		}
+		.header__actions {
+			margin-left: 0;
 		}
 
 	}

@@ -13,7 +13,10 @@ import { Image } from "astro:assets";
 				portal untuk ahli MARC.
 			</p>
 			<div class="hero__cta">
-				<a href="#ciri" class="button button--primary">Lihat ciri utama</a>
+				<a href="https://app.marc.hafizbahtiar.com/register" class="button button--primary">
+					Daftar di portal web
+				</a>
+				<a href="#ciri" class="button button--secondary">Lihat ciri utama</a>
 			</div>
 			<p class="hero__availability">
 				Portal web tersedia sekarang. Aplikasi mudah alih sedang disediakan.
@@ -140,5 +143,16 @@ import { Image } from "astro:assets";
 	.button--primary:hover {
 		background: var(--color-primary-dark);
 		border-color: var(--color-primary-dark);
+	}
+
+	.button--secondary {
+		background: transparent;
+		color: var(--color-ink);
+		border: 1.5px solid var(--color-outline);
+	}
+
+	.button--secondary:hover {
+		border-color: var(--color-primary);
+		color: var(--color-primary);
 	}
 </style>
