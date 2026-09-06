@@ -42,27 +42,63 @@ const { feeLabel } = Astro.props;
 			<div class="status__icon status__icon--pending" aria-hidden="true">
 				&hellip;
 			</div>
-			<h1>Terima kasih</h1>
+			<h1>Menyemak status pembayaran</h1>
 			<p>
-				{feeLabel} anda sedang diproses. Boleh kembali ke aplikasi MARC -
-				status akan dikemas kini automatik sebaik pembayaran disahkan.
+				{feeLabel} anda sedang diproses. Status akan dikemas kini selepas
+				pengesahan daripada ToyyibPay.
 			</p>
 		</div>
 	</div>
 </main>
 
-<script>
+<script define:vars={{ apiBaseUrl: import.meta.env.PUBLIC_API_BASE_URL ?? "" }}>
 	const states = document.querySelectorAll<HTMLElement>(".status__state");
-	const statusId = new URLSearchParams(window.location.search).get(
-		"status_id",
-	);
-	const target =
-		document.getElementById(`state-${statusId}`) ||
-		document.getElementById("state-default");
+	const params = new URLSearchParams(window.location.search);
+	const statusId = params.get("status_id");
+	const billCode = params.get("billcode");
 
-	for (const node of states) {
-		node.hidden = node !== target;
+	function showState(id) {
+		const target = document.getElementById(`state-${id}`) ||
+			document.getElementById("state-default");
+		for (const node of states) node.hidden = node !== target;
 	}
+
+	function showLegacyState() {
+		showState(statusId ?? "default");
+	}
+
+	async function pollStatus() {
+		if (!apiBaseUrl || !billCode) {
+			showLegacyState();
+			return;
+		}
+
+		showState("default");
+		for (let attempt = 0; attempt < 8; attempt += 1) {
+			try {
+				const response = await fetch(
+					`${apiBaseUrl}/payment-status/toyyibpay/${encodeURIComponent(billCode)}`,
+					{ headers: { Accept: "application/json" } },
+				);
+				if (response.ok) {
+					const body = await response.json();
+					if (body.status === "succeeded") {
+						showState("1");
+						return;
+					}
+					if (body.status === "failed") {
+						showState("3");
+						return;
+					}
+				}
+			} catch {
+				// Rangkaian sementara gagal - cuba semula dalam pusingan seterusnya.
+			}
+			await new Promise((resolve) => setTimeout(resolve, 3000));
+		}
+	}
+
+	void pollStatus();
 </script>
 
 <style>

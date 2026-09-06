@@ -6,20 +6,20 @@ import { Image } from "astro:assets";
 <section class="hero" id="top">
 	<div class="hero__inner">
 		<div class="hero__text">
-			<span class="hero__eyebrow">Kelab Sukan dan Rekreasi MAIWP</span>
+			<p class="hero__eyebrow">Kelab Sukan dan Rekreasi MAIWP</p>
 			<h1>Satu tempat untuk semua urusan kelab MARC.</h1>
 			<p class="hero__lead">
-				Pengumuman, aktiviti, pendaftaran ahli dan notifikasi - semuanya
-				dalam satu aplikasi. Dibina khas untuk ahli MARC, oleh sesama
-				ahli komuniti.
+				Pengumuman, aktiviti, pendaftaran ahli dan notifikasi dalam satu
+				portal untuk ahli MARC.
 			</p>
 			<div class="hero__cta">
-				<a href="#tentang" class="button button--ghost"
-					>Ketahui Lebih Lanjut</a
-				>
+				<a href="https://app.marc.hafizbahtiar.com/register" class="button button--primary">
+					Daftar di portal web
+				</a>
+				<a href="#ciri" class="button button--secondary">Lihat ciri utama</a>
 			</div>
 			<p class="hero__availability">
-				Portal web tersedia sekarang · Aplikasi mudah alih sedang disediakan
+				Portal web tersedia sekarang. Aplikasi mudah alih sedang disediakan.
 			</p>
 		</div>
 		<div class="hero__art">
@@ -49,14 +49,9 @@ import { Image } from "astro:assets";
 	}
 
 	.hero__eyebrow {
-		display: inline-block;
-		font-size: 0.8rem;
+		font-size: 0.85rem;
 		font-weight: 600;
-		letter-spacing: 0.08em;
 		color: var(--color-primary);
-		background: color-mix(in srgb, var(--color-primary) 12%, transparent);
-		padding: 6px 12px;
-		border-radius: 999px;
 		margin-bottom: 18px;
 	}
 
@@ -139,13 +134,24 @@ import { Image } from "astro:assets";
 			background 0.15s ease;
 	}
 
-	.button--ghost {
+	.button--primary {
+		background: var(--color-primary);
+		color: white;
+		border: 1.5px solid var(--color-primary);
+	}
+
+	.button--primary:hover {
+		background: var(--color-primary-dark);
+		border-color: var(--color-primary-dark);
+	}
+
+	.button--secondary {
 		background: transparent;
 		color: var(--color-ink);
 		border: 1.5px solid var(--color-outline);
 	}
 
-	.button--ghost:hover {
+	.button--secondary:hover {
 		border-color: var(--color-primary);
 		color: var(--color-primary);
 	}
