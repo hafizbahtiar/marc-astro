@@ -1,24 +1,13 @@
 <section class="download" id="muat-turun">
 	<div class="download__inner">
-		<h2>Mulakan dengan MARC</h2>
+		<p class="download__kicker">Akses MARC</p>
+		<h2>Portal web tersedia sekarang</h2>
 		<p>
-			Portal web MARC sudah tersedia untuk pendaftaran, aktiviti, notifikasi
-			dan urusan keahlian. Aplikasi mudah alih akan menyusul selepas semakan
-			store selesai.
+			Gunakan portal web untuk pendaftaran, aktiviti, notifikasi dan urusan
+			keahlian. Aplikasi mudah alih sedang disediakan.
 		</p>
-		<div class="download__badges">
-			<span class="badge">
-				<span class="badge__label">Akan Datang di</span>
-				<span class="badge__store">App Store</span>
-			</span>
-			<span class="badge">
-				<span class="badge__label">Akan Datang di</span>
-				<span class="badge__store">Google Play</span>
-			</span>
-		</div>
 		<p class="download__note">
-			Sudah ahli kelab? Hubungi pihak pengurusan MARC untuk maklumat
-			akses.
+			Sudah ahli kelab? Hubungi pihak pengurusan MARC untuk maklumat akses.
 		</p>
 	</div>
 </section>
@@ -26,14 +15,23 @@
 <style>
 	.download {
 		padding: 72px 24px;
-		background: var(--color-primary);
+		background: var(--color-secondary-dark);
 		color: white;
-		text-align: center;
+		border-top: 1px solid color-mix(in srgb, white 12%, transparent);
 	}
 
 	.download__inner {
 		max-width: 640px;
 		margin: 0 auto;
+	}
+
+	.download__kicker {
+		margin-bottom: 10px;
+		color: color-mix(in srgb, white 68%, transparent);
+		font-size: 0.78rem;
+		font-weight: 600;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
 	}
 
 	h2 {
@@ -46,38 +44,6 @@
 		font-size: 1.02rem;
 		line-height: 1.6;
 		color: color-mix(in srgb, white 88%, transparent);
-	}
-
-	.download__badges {
-		margin-top: 32px;
-		display: flex;
-		justify-content: center;
-		gap: 16px;
-		flex-wrap: wrap;
-	}
-
-	.badge {
-		display: flex;
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 2px;
-		padding: 10px 20px;
-		border-radius: 12px;
-		border: 1.5px solid color-mix(in srgb, white 35%, transparent);
-		min-width: 168px;
-		opacity: 0.85;
-	}
-
-	.badge__label {
-		font-size: 0.7rem;
-		letter-spacing: 0.04em;
-		text-transform: uppercase;
-		opacity: 0.8;
-	}
-
-	.badge__store {
-		font-size: 1.05rem;
-		font-weight: 600;
 	}
 
 	.download__note {

@@ -57,7 +57,7 @@ const { feeLabel } = Astro.props;
 	const statusId = params.get("status_id");
 	const billCode = params.get("billcode");
 
-	function showState(id: string) {
+	function showState(id) {
 		const target = document.getElementById(`state-${id}`) ||
 			document.getElementById("state-default");
 		for (const node of states) node.hidden = node !== target;
@@ -81,7 +81,7 @@ const { feeLabel } = Astro.props;
 					{ headers: { Accept: "application/json" } },
 				);
 				if (response.ok) {
-					const body = await response.json() as { status?: string };
+					const body = await response.json();
 					if (body.status === "succeeded") {
 						showState("1");
 						return;
